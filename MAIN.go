@@ -32,7 +32,7 @@ func main() {
 
 		time.Sleep(1 * time.Second)
 
-		alatekaClient.SendMessage(m.Chat.ID, "Hola, como estas "+m.Chat.Username)
+		alatekaClient.SendMessage(m.Chat.ID, "Hola 👋 como estas "+m.Chat.Username)
 	})
 
 	err := alatekaBot.Start()
