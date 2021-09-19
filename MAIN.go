@@ -10,7 +10,7 @@ import (
 	"github.com/yanzay/tbot/v2"
 )
 
-func init() {
+func init() { // Load .env
 
 	err := godotenv.Load(".env")
 
@@ -21,23 +21,23 @@ func init() {
 
 func main() {
 
-	bot := tbot.New(os.Getenv("TELEGRAM_TOKEN"))
+	alatekaBot := tbot.New(os.Getenv("TELEGRAM_TOKEN")) // Get token telegram
 
-	c := bot.Client()
+	alatekaClient := alatekaBot.Client()
 
-	bot.HandleMessage("hola", func(m *tbot.Message) {
+	alatekaBot.HandleMessage("hola", func(m *tbot.Message) { // Getting message & progress it
 
 		fmt.Print("|=> "+m.Chat.FirstName, " (Alias: ", m.Chat.Username, ")", " - Mensaje ==> ", m.Text, "\n")
-		c.SendChatAction(m.Chat.ID, tbot.ActionTyping)
+		alatekaClient.SendChatAction(m.Chat.ID, tbot.ActionTyping)
 
 		time.Sleep(1 * time.Second)
 
-		c.SendMessage(m.Chat.ID, "Hola, como estas "+m.Chat.Username)
+		alatekaClient.SendMessage(m.Chat.ID, "Hola, como estas "+m.Chat.Username)
 	})
 
-	err := bot.Start()
+	err := alatekaBot.Start()
 
-	if err != nil {
+	if err != nil { // If return a error, show it
 
 		log.Fatal(err)
 	}
